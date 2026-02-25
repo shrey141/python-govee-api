@@ -5,7 +5,6 @@ with open("README.md", "r") as fh:
 
 INSTALL_REQUIRES = [
     "aiohttp>=3.7.1",
-    "certifi>=2021.10.8",
     "dacite>=1.7.0",
     "events>=0.3",
 ]

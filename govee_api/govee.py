@@ -6,11 +6,11 @@ from datetime import datetime
 from events import Events
 from typing import Dict, List, Optional, Tuple, Union
 
-from govee_api.__version__ import VERSION
-from govee_api.api import GoveeApi
-from govee_api.ble import GoveeBle
-from govee_api.govee_dtos import GoveeDevice, GoveeSource
-from govee_api.learning_storage import (
+from .__version__ import VERSION
+from .api import GoveeApi, SCHEDULE_GET_DEVICES_SECONDS
+from .ble import GoveeBle
+from .govee_dtos import GoveeDevice, GoveeSource
+from .learning_storage import (
     GoveeAbstractLearningStorage,
     GoveeLearnedInfo,
 )
