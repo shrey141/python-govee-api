@@ -1,6 +1,6 @@
 import copy
 
-from govee_api_laggat import GoveeDevice, GoveeLearnedInfo, GoveeSource
+from govee_api import GoveeDevice, GoveeLearnedInfo, GoveeSource
 
 API_URL = "https://developer-api.govee.com"
 API_KEY = "SUPER_SECRET_KEY"

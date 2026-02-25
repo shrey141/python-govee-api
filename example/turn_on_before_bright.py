@@ -1,7 +1,7 @@
 import argparse
 import asyncio
 
-from govee_api_laggat import Govee
+from govee_api import Govee
 
 
 async def foo(api_key):
@@ -20,7 +20,7 @@ async def foo(api_key):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="govee_api_laggat examples")
+    parser = argparse.ArgumentParser(description="govee_api examples")
     parser.add_argument("--api-key", dest="api_key", type=str, required=True)
     args = parser.parse_args()
 

@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-[ ] According to Govee API-support a batch status update is coming - when it is there we could save requests (which are limited to 60/minute)
-  This feature is planned for 2021.
+[ ] Govee API is limited to 10,000 requests/account/day. A batch status endpoint would reduce per-device poll cost.
 
 ### Changed
 

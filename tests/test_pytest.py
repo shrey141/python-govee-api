@@ -6,7 +6,7 @@ from time import time
 from typing import Dict
 from unittest.mock import MagicMock, AsyncMock
 
-from govee_api_laggat import (
+from govee_api import (
     Govee,
     GoveeAbstractLearningStorage,
     GoveeDevice,
@@ -71,7 +71,7 @@ def mock_never_lock_result(self, *args, **kwargs):
 @pytest.fixture
 def mock_never_lock(monkeypatch):
     monkeypatch.setattr(
-        "govee_api_laggat.api.GoveeApi._get_lock_seconds", mock_never_lock_result
+        "govee_api.api.GoveeApi._get_lock_seconds", mock_never_lock_result
     )
 
 
@@ -79,8 +79,8 @@ def mock_never_lock(monkeypatch):
 def mock_logger(monkeypatch):
     mock = MagicMock()
     mock.mock_add_spec(logging.Logger)
-    monkeypatch.setattr("govee_api_laggat.govee_api_laggat._LOGGER", mock)
-    monkeypatch.setattr("govee_api_laggat.api._LOGGER", mock)
+    monkeypatch.setattr("govee_api.govee._LOGGER", mock)
+    monkeypatch.setattr("govee_api.api._LOGGER", mock)
     return mock
 
 

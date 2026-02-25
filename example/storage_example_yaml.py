@@ -9,13 +9,13 @@ from typing import Dict
 import bios
 import dacite
 from dataclasses import asdict
-from govee_api_laggat import Govee, GoveeAbstractLearningStorage, GoveeLearnedInfo
+from govee_api import Govee, GoveeAbstractLearningStorage, GoveeLearnedInfo
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class YamlLearningStorage(GoveeAbstractLearningStorage):
-    """Storage for govee_api_laggat to Save/Restore learned informations for lamps."""
+    """Storage for govee_api to Save/Restore learned informations for lamps."""
 
     def __init__(self, *args, **kwargs):
         """If you override __init__, call super."""
@@ -57,7 +57,7 @@ class YamlLearningStorage(GoveeAbstractLearningStorage):
 
 if __name__ == "__main__":
     """Test this out."""
-    parser = argparse.ArgumentParser(description="govee_api_laggat examples")
+    parser = argparse.ArgumentParser(description="govee_api examples")
     parser.add_argument("--api-key", dest="api_key", type=str, required=True)
     args = parser.parse_args()
 
