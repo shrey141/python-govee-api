@@ -1,13 +1,11 @@
 import aiohttp
 import asyncio
-import certifi
 from contextlib import asynccontextmanager
 import logging
 import math
-import ssl
 from typing import Any, List, Tuple, Union
 
-from govee_api.govee_dtos import GoveeDevice, GoveeSource
+from .govee_dtos import GoveeDevice, GoveeSource
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -37,9 +35,7 @@ class GoveeApi(object):
 
     async def __aenter__(self):
         """Async context manager enter."""
-        ssl_context = ssl.create_default_context(cafile=certifi.where())
-        conn = aiohttp.TCPConnector(ssl=ssl_context)
-        self._session = aiohttp.ClientSession(connector=conn)
+        self._session = aiohttp.ClientSession()
         return self
 
     async def __aexit__(self, *err):
