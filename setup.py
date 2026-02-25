@@ -5,24 +5,19 @@ with open("README.md", "r") as fh:
 
 INSTALL_REQUIRES = [
     "aiohttp>=3.7.1",
-    "bios>=0.1.2",
     "certifi>=2021.10.8",
     "dacite>=1.7.0",
     "events>=0.3",
-    "pexpect>=4.8.0",
-    "pygatt>=4.0.5",
-    # , "govee_btled-1.0"
 ]
 
 setuptools.setup(
-    name="govee_api_laggat",
-    version="0.2.2",
-    author="Florian Lagg @LaggAt",
-    author_email="florian.lagg@gmail.com",
-    description="Implementation of the govee API to control LED strips and bulbs.",
+    name="govee_api",
+    version="0.2.3",
+    author="@shrey141",
+    description="Python client for the Govee API to control LED strips and bulbs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/LaggAt/python-govee-api",
+    url="https://github.com/shrey141/python-govee-api",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -30,6 +25,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.12",
-    # dependency_links=['https://codeload.github.com/chvolkmann/govee_btled/tarball/master#egg=govee_btled-1.0'],
     install_requires=INSTALL_REQUIRES,
 )

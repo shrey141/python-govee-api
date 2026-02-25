@@ -1,49 +1,71 @@
-# govee-api-laggat Package
+# govee_api
 
-Python implementation of the govee API 1.0 to control the cheap and colorful LED strips.
+Python client for the [Govee API](https://developer.govee.com) to control LED strips and bulbs from Home Assistant or any Python project.
 
-## Why / Motivation
+> **Note:** This library powers the [shrey141/hacs-govee](https://github.com/shrey141/hacs-govee) Home Assistant integration.
 
-I want to use this package in an Home Assistant Component to control my new light strips.
+## Installation
 
-![demo of custom integration](doc/media/demo_20200920.gif)
+```bash
+pip install git+https://github.com/shrey141/python-govee-api.git
+```
 
-Remember: this is NOT the integration, but the library the integration uses.
+## Usage
 
-The custom integration project lives here: [github.com/LaggAt/hacs-govee](https://github.com/LaggAt/hacs-govee)
+See the [`/example`](example/) folder for complete working examples. Basic usage:
 
-## Usage in your project
+```python
+import asyncio
+from govee_api import Govee, GoveeNoLearningStorage
 
-[Look at the /example folder in this repo.](https://github.com/LaggAt/python-govee-api/tree/master/example)
+async def main():
+    async with Govee("YOUR_API_KEY", learning_storage=GoveeNoLearningStorage()) as client:
+        devices, err = await client.get_devices()
+        if err:
+            print(f"Error: {err}")
+            return
+        for device in devices:
+            print(f"{device.device_name} ({device.model})")
+            await client.turn_on(device)
 
-## Govee trademark
-
-<img src="doc/media/govee_logo_orig.jpg" alt="Govee logo" width="300" height="91">
-
-Govee and the Govee logo are trademarks or registered trademarks of Shenzhen Intellirock Company Limited, and used by Govee with permission. Neither your use of the Govee Logo grant you any right, title, or interest in, or any license to reproduce or otherwise use, the Govee logo. You shall not at any time, nor shall you assist others to, challenge Govee's right, title, or interest in, or the validity of, the Govee Marks.
-
-## Links
-
-- PyPi project and python package: [pypi.org/project/govee-api-laggat](https://pypi.org/project/govee-api-laggat/)
-- Home Assistant custom integration Git: [github.com/LaggAt/hacs-govee](https://github.com/LaggAt/hacs-govee)
-- Govee API documentation: [Govee API Reference](https://govee-public.s3.amazonaws.com/developer-docs/GoveeAPIReference.pdf)
+asyncio.run(main())
+```
 
 ## API Key
 
-To get an api key you need to install the 'Govee Home' app on your mobile and browse the user tab - About - Request API key. Usually you get your key within seconds by mail.
+Open the **Govee Home** app → Account → Settings → **About Us** → **Apply for API Key**. The key is emailed to your account address within minutes.
 
-## Issues / Improvements
+## Rate Limits
 
-There are two projects, this one is the API implementation for python.
-The second project is the custom integration into Home Assistant which currently lives [github.com/LaggAt/hacs-govee](https://github.com/LaggAt/hacs-govee)
+The Govee API allows **10,000 requests per account per day**. Each `get_states()` call makes one request per device. Plan your poll interval accordingly.
 
-Feel free to fork and start a pull request in your feature/bug branch.
-If you cannot fix or extend it yourself, you may want to add an issue in the correct project, but it may take a bit longer.
+## Features
 
-## development
+- Turn devices on/off
+- Set brightness (0–254)
+- Set color (RGB)
+- Set color temperature (2000–9000 K)
+- Poll device state
+- Learned device settings persisted via pluggable storage
+- Online/offline event callbacks
+- Assumed state after commands (reduces perceived lag)
 
-* pip install setuptools wheel tox
-* Fork and clone the repository
-* Make a 'feature/NAME' or 'bug/NAME' branch
-* Run tests: tox
-* commit and start a pull request
+## Govee Trademark
+
+Govee and the Govee logo are trademarks or registered trademarks of Shenzhen Intellirock Company Limited. Use of the Govee name refers to the third-party API service this library communicates with.
+
+## Development
+
+```bash
+pip install setuptools wheel tox
+# clone, make a feature/NAME or bug/NAME branch
+tox  # run tests
+```
+
+## Issues
+
+Report bugs at [github.com/shrey141/python-govee-api/issues](https://github.com/shrey141/python-govee-api/issues)
+
+## License
+
+MIT — see [LICENSE](LICENSE)

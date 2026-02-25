@@ -1,4 +1,4 @@
-# govee-api-laggat
+# govee_api
 
 ## Events you may subscribe to
 

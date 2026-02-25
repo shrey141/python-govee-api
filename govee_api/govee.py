@@ -6,11 +6,11 @@ from datetime import datetime
 from events import Events
 from typing import Dict, List, Optional, Tuple, Union
 
-from govee_api_laggat.__version__ import VERSION
-from govee_api_laggat.api import GoveeApi
-from govee_api_laggat.ble import GoveeBle
-from govee_api_laggat.govee_dtos import GoveeDevice, GoveeSource
-from govee_api_laggat.learning_storage import (
+from govee_api.__version__ import VERSION
+from govee_api.api import GoveeApi
+from govee_api.ble import GoveeBle
+from govee_api.govee_dtos import GoveeDevice, GoveeSource
+from govee_api.learning_storage import (
     GoveeAbstractLearningStorage,
     GoveeLearnedInfo,
 )
@@ -21,7 +21,7 @@ ERR_MESSAGE_NO_ACTIVE_IMPL = "No implementation is available for that action."
 
 
 class GoveeError(Exception):
-    """Base Exception thrown from govee_api_laggat."""
+    """Base Exception thrown from govee_api."""
 
 
 class GoveeDeviceNotFound(GoveeError):
@@ -63,7 +63,7 @@ class Govee(object):
         learning_storage: Optional[GoveeAbstractLearningStorage] = None,
     ):
         """Init with an API_KEY and storage for learned values."""
-        _LOGGER.debug("govee_api_laggat v%s", VERSION)
+        _LOGGER.debug("govee_api v%s", VERSION)
         self._api_key = api_key
         self._api = None
         self._online = False

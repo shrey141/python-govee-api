@@ -2,7 +2,7 @@ import argparse
 import asyncio
 from typing import Dict
 
-from govee_api_laggat import Govee, GoveeAbstractLearningStorage, GoveeLearnedInfo
+from govee_api import Govee, GoveeAbstractLearningStorage, GoveeLearnedInfo
 
 
 async def all_examples(api_key, your_learning_storage):
@@ -96,7 +96,7 @@ your_learning_storage = YourLearningStorage()
 
 # and your are good to go
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="govee_api_laggat examples")
+    parser = argparse.ArgumentParser(description="govee_api examples")
     parser.add_argument("--api-key", dest="api_key", type=str, required=True)
     args = parser.parse_args()
 
